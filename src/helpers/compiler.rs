@@ -23,8 +23,10 @@ where
 {
     println!("Compiling {} to dvi...", file);
     let _ = File::open(file)?;
+    let outdir: &str = out.unwrap_or("./output");
+    let outarg = format!("--output-directory={}", outdir);
     let mut proc = Command::new("latex")
-        .args(vec![file, "--output-directory=", out.unwrap_or("output")])
+        .args(vec!["--halt-on-error", outarg.as_str(), file])
         .spawn()
         .expect("Failed to spawn process");
     let _ = proc.wait().map_err(|e| e.to_string())?;
