@@ -1,14 +1,14 @@
 [package]
-name = "cardware"
+name = "curse"
 version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = "cardware"
+name = "curse"
 path = "src/lib.rs"
 
 [[bin]]
-name = "cardware"
+name = "curse"
 path = "src/main.rs"
 
 [dependencies]
@@ -17,3 +17,5 @@ log = "0.4.17"
 matches = "0.1.10"
 os_info = "3.6.0"
 pretty_env_logger = "0.4.0"
+toml = "0.7.2"
+serde = { version = "1.0.130", features = ["derive"] }

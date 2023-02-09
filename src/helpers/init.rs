@@ -1,5 +1,4 @@
 #![allow(dead_code)]
-
 use os_info::Type;
 use std::error::Error;
 use std::process::Command;
@@ -8,8 +7,11 @@ pub fn init_workspace(name: &str) -> Result<(), Box<dyn Error>>
 where
 {
     std::fs::create_dir(name)?;
-    std::fs::create_dir(format!("{}/output", name))?;
+    std::fs::create_dir(format!("{}/artifacts", name))?;
+    std::fs::create_dir(format!("{}/build", name))?;
     std::fs::create_dir(format!("{}/src", name))?;
+    std::env::set_current_dir(name)?;
+    crate::CurseManifest::write_out_template()?;
     return Ok(());
 }
 

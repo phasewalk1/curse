@@ -1,4 +1,6 @@
-mod helpers;
+pub mod helpers;
+pub mod manif;
+pub use manif::Manifest as CurseManifest;
 pub mod init_prelude
 {
     #[cfg(target_os = "linux")]

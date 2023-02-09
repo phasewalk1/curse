@@ -1,0 +1,9 @@
+[project]
+name = "curseforge"
+version = "0.1.0"
+authors = ["Your Name"]
+
+[defaults]
+target = "pdf"
+artifacts-dir = "artifacts"
+target-dir = "target"
