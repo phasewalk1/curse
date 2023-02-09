@@ -1,0 +1,262 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX Template: Two Column Colour Article
+%
+% Source: http://www.howtotex.com/
+% Feel free to distribute this template, but please keep the
+% referal to howtotex.com.
+% Date: Feb 2011
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use overleaf.com: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+% If you're new to LaTeX, the wikibook is a great place to start:
+% http://en.wikibooks.org/wiki/LaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% adaptions made by wolfgang stoettner mail@stoettner.net
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Preamble
+\documentclass[	DIV=calc,%
+							paper=a4,%
+							fontsize=11pt,%
+							twocolumn]{scrartcl} % KOMA-article class
+
+\usepackage{lipsum}	% Package to create dummy text
+\usepackage[english]{babel}	% English language/hyphenation
+\usepackage[protrusion=true,expansion=true]{microtype}	% Better typography
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[pdftex]{graphicx} % Enable pdflatex
+\usepackage{wrapfig} % enable figure wrapping
+\usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats
+\usepackage{epstopdf} % Converts .eps to .pdf
+\usepackage{subfig}	% Subfigures
+\usepackage{booktabs} % Nicer tables
+\usepackage{fix-cm}	% Custom fontsizes
+\usepackage{booktabs} % prof. looking tables (www.en.wikibooks.org/wiki/LaTeX/Tables#Professional_tables)
+
+%%% Custom sectioning (sectsty package)
+\usepackage{sectsty} % Custom sectioning (see below)
+\allsectionsfont{%		% Change font of al section commands
+	\usefont{OT1}{phv}{b}{n}%	% bch-b-n: CharterBT-Bold font
+	}
+
+\sectionfont{%		% Change font of \section command
+	\usefont{OT1}{phv}{b}{n}%	% bch-b-n: CharterBT-Bold font
+	}
+
+
+%%% Headers and footers
+\usepackage{fancyhdr} % Needed to define custom headers/footers
+	\pagestyle{fancy} % Enabling the custom headers/footers
+\usepackage{lastpage}	
+
+% Header (empty)
+\lhead{}
+\chead{}
+% Footer (you may change this to your own needs)
+\lfoot{\footnotesize \texttt{Calculus 1 Final Notecard}}
+\cfoot{}
+\rfoot{\footnotesize page \thepage\ of \pageref{LastPage}}	% "Page 1 of 2"
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\newcommand{\hformbar}[1]{\vspace{5pt}\hrule\vspace{10pt}} % creates a horizontal bar to separate formulae better; space adaptions can be made centrally here
+
+
+%%% Creating an initial of the very first character of the content
+\usepackage{lettrine}
+\newcommand{\initial}[1]{%
+     \lettrine[lines=3,lhang=0.3,nindent=0em]{
+     				\color{DarkGoldenrod}
+     				{\textsf{#1}}}{}}
+
+%%% Title, author and date metadata
+\usepackage{titling} % For custom titles
+
+\newcommand{\HorRule}{\color{DarkGoldenrod}%	% Creating a horizontal rule
+									  	\rule{\linewidth}{1pt}%
+										}
+
+\date{\today} % No date
+
+%%% wws: create a non-indented formula name
+\newcommand{\formdesc}[1]{\noindent\textbf{#1}}
+
+
+
+%%% Begin document -----------------------------------------------------------------
+\begin{document}
+\thispagestyle{fancy} 	% Enabling the custom headers/footers for the first page 
+\hspace{10pt}
+
+%%% DEFINITION OF THE DERIVATIVE
+\formdesc{Derivative Definition}
+\begin{equation}
+    \frac{d}{dx}[f(x)] = \lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}
+\end{equation}
+\hformbar
+
+%%% DIFFERENTATION RULES
+\formdesc{Differentiation Rules}
+\begin{equation}
+    \frac{d}{dx}[f(x)g(x)]=f^\prime g + fg^\prime
+\end{equation}
+\begin{equation}
+    \frac{d}{dx}\lbrack\frac{f(x)}{g(x)}\rbrack=\frac{f^\prime(x)g(x)-f(x)g^\prime(x)}{[g(x)]^2}
+\end{equation}
+\begin{equation}
+    \frac{d}{dx}\lbrack f(g(x))\rbrack = f^\prime(g(x))g^\prime(x)
+\end{equation}
+\hformbar
+
+%%% MEAN VALUE THEOREM --------------------------------------------------------------
+\formdesc{Mean Value Theorem}
+\footnotesize{If $f$ is a continuous function over the closed interval $\lbrack a, b\rbrack$ differentiable over the open interval $(a, b)$, and $c\in(a, b)$}.
+\begin{equation}
+\label{mvt}
+f^\prime(c) = \frac{f(b)-f(a)}{b-a}
+\end{equation}
+\hformbar
+
+
+%%% Enumeration example -----------------------------------------------------------
+%%%\begin{enumerate}
+%%% \item decide on the number of classes k where \(2^k > n\)
+%%% \item  determine the class interval i by \(i\geq\frac{\text{max value - min value}}{k}\)
+%%% \item set individual class limits.
+%%% \item tally the values into the classes.
+%%% \item count the number of items in each class.
+%%%\end{enumerate}
+
+%%% DERIVATIVES AND THE SHAPE OF A GRAPH ----------------------------------------------
+\formdesc{Derivatives and the Shape of a Graph}
+\begin{enumerate}
+    \item If $f^\prime$ changes sign from positive when $x < c$ to negative when $x > c$,     then $f(c)$ is a local maximum of $f$.
+    \item If $f^\prime$ changes sign from negative when $x < c$ to positive when $x > c$,     then $f(c)$ is a local minimum of $f$.
+    \item If $f^\prime$ has the same sign for $x < c$ and $x > c$, then $f(c)$ is neither     a local maximum nor a local minimum of $f$.
+\end{enumerate}
+\hformbar
+
+%%% CONCAVITY AND POINTS OF INFLECTION
+\formdesc{Concavity and Points of Inflection}
+\begin{center}
+\begin{tabular}{||c | c | c | c||} 
+ \hline
+ Sign of $f^\prime$ & Sign of $f^{\prime\prime}$ & Is $f$ inc. or dec.? & Concavity \\ [0.5ex] 
+ \hline\hline
+ + & + & Increasing & Up \\ 
+ \hline
+ + & - & Increasing & Down \\
+ \hline
+ - & + & Decreasing & Up \\
+ \hline
+ - & - & Decreasing & Down \\
+ \hline
+\end{tabular}
+\end{center}
+\hformbar
+
+%%% POWER RULE FOR INTEGRATION
+\formdesc{Power Rule of Integration}
+\begin{equation}
+\label{integration power rule}
+\int x^n \space dx = \frac{x^{n+1}}{n+1}+C
+\end{equation}
+\hformbar
+
+%%% RIEMANN SUMS
+\formdesc{Riemann Sums}
+\begin{equation}
+\label{Left/Right Hand Riemann Sums}
+L_n \approx \sum^n_{i=1}f(x_{i-1})\Delta x
+\end{equation}
+
+\begin{equation}
+R_n \approx \sum^n_{i=1}f(x_i)\Delta x
+\end{equation}
+
+\begin{equation}
+A\approx \sum^n_{i=1}f(x^*_i)\Delta x
+\end{equation}
+\hformbar
+
+%%% THE DEFINITE INTEGRAL
+\formdesc{The Definite Integral}
+\begin{equation}
+    \int_a^b f(x)\space dx=\lim_{n\rightarrow \infin}\sum^n_{i=1}f(x^*_i)\Delta x
+\end{equation}
+where:
+\begin{itemize}
+    \item The limit exists and $f(x)$ is continuous on $\lbrack a, b\rbrack$, then $f$ is integrable on $\lbrack a, b\rbrack$.
+\end{itemize}
+\hformbar
+
+%%% FIND AVG OF A FUNCTION
+\formdesc{Average of a Function}
+\footnotesize{If $f(x)$ is continuous over the interval $\lbrack a, b\rbrack$.}
+\begin{equation}
+    \bar{f}=\frac{1}{b-a}\int_a^b f(x)\space dx
+\end{equation}
+\hformbar
+
+%%% FERMAT'S THEOREM
+\formdesc{Fermat's Theorem}
+\footnotesize{If $f$ has a local extremum at $c$ and $f$ is differentiable at $c$, then}
+\begin{equation}
+    f^\prime(c) = 0
+\end{equation}
+\hformbar
+
+%%% Linear Approximators
+\formdesc{Linear Approximations}
+\footnotesize{Consider a differentiable function $f$ such that $\lim_{x\rightarrow a}f(x)=0$. For $x$ near $a$, we can write}
+\begin{equation}
+    L(x) = f(a)+f^\prime(a)(x-a)
+\end{equation}
+\hformbar
+
+\formdesc{Common Derivatives and Their Antiderivatives}
+\begin{center}
+\begin{tabular}{||c | c||} 
+ \hline
+ Differentiation & Indefinite Integration \\ [4ex] 
+ \hline\hline
+ $\frac{d}{dx}(k)=0$ & $\int k\space dx=kx+C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(x^n)=nx^{n-1}$ & $\int x^n\space dx = \frac{x^{n+1}}{n+1}+C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(\ln |x|)=\frac{1}{x}$ & $\int\frac{1}{x}\space dx=\ln |x| + C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(e^x)=e^x$ & $\int e^x\space dx=e^x + C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(\sin x)=\cos x$ & $\int\cos x\space dx=\sin x + C$ \\ [2ex] 
+ \hline
+ $\frac{d}{dx}(\cos x)=-\sin x$ & $\int\sin x\space dx=-\cos x + C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(\tan x)=\sec^2 x$ & $\int\sec^2 x\space dx = \tan x + C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(\cot x)=-\csc^2 x$ & $\int\csc^2 x\space dx=-\cot x + C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(\sec x)=\sec x\tan x$ & $\int\tan x\sec x\space dx=\sec x + C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(\csc x)=-\csc x\cot x$ & $\int\cot x\csc x\space dx=-\csc x + C$ \\ [2ex]
+ \hline
+ $\frac{d}{dx}(\arcsin x)=\frac{1}{\sqrt{1-x^2}}$ & $\int\frac{1}{\sqrt{1-x^2}}\space dx = \arcsin x + C$ \\ [2ex]
+ \hline
+  $\frac{d}{dx}(\arccos x)=-\frac{1}{\sqrt{1-x^2}}$ & $\int -\frac{1}{\sqrt{1-x^2}}\space dx = \arccos x + C$ \\ [2ex]
+ \hline
+  $\frac{d}{dx}(\arctan x)=\frac{1}{1+x^2}$ & $\int\frac{1}{1+x^2}\space dx = \arctan x + C$ \\ [2ex]
+ \hline
+ 
+\end{tabular}
+\end{center}
+\hformbar
+
+\end{document}
