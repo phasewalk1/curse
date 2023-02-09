@@ -1,0 +1,19 @@
+[package]
+name = "cardware"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "cardware"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cardware"
+path = "src/main.rs"
+
+[dependencies]
+argh = "0.1.10"
+log = "0.4.17"
+matches = "0.1.10"
+os_info = "3.6.0"
+pretty_env_logger = "0.4.0"
