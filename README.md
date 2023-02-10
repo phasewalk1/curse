@@ -1,5 +1,5 @@
 # curse <img src="https://github.com/phasewalk1/curse/blob/master/docs/IMG_5757.JPG" height=250 width=250 align="right" style="padding-left: 20px;">
-__Command-line Unified Research, Science, and Engineering__
+Command-line Unified Research, Science, and Engineering
 
 ## Overview
 
