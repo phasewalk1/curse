@@ -67,3 +67,7 @@ Compile a source file to dvi:
 ```bash
 curse compile example.TeX -o dvi
 ```
+
+## Future Plans and Unstable Work
+
+I think it would be cool if `curse` did more than just workspace management. Ideally, `curse` should be able to generate templates for LaTeX documents and also insert in-place various section types (i.e., _abstract_, _subsection_, _subsubsection_). These in-place insertion functions will act much like mini-templates, allowing for quicker LaTeX workflows. I'll probably experiment with the API for this for awhile before releasing this crate more formally.
