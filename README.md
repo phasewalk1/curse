@@ -1,5 +1,6 @@
 # curse <img src="https://github.com/phasewalk1/curse/blob/master/docs/IMG_5757.JPG" height=200 width=200 align="right" style="padding-left: 20px;">
-Command-line Unified Research, Science, and Engineering
+
+**Command-line Unified Research, Science, and Engineering**
 
 ## Overview
 
@@ -8,6 +9,8 @@ Command-line Unified Research, Science, and Engineering
 ## Features
 
 ### curse `new` and `Curse.toml`
+
+> Instantiates a Workspace
 
 `curse` provides a command for quickly initializing a local LaTeX workspace. This command is the `new` command. `new` creates a directory with `src/`, `artifacts/`, and `build/`. `src/` contains all the LaTeX source files, `artifacts/` is where build artifacts are stored, and `build/` contains the compiled source (.pdf, .dvi). The `new` command also creates a manifest template for you at `Curse.toml`. The default manifest file looks like this,
 
@@ -33,9 +36,26 @@ The `defaults` field of the manifest defines global overrides against `curse`'s 
 - `defaults.artifacts-dir` - The directory to store build artifacts.
 - `defaults.target-dir` - The directory to store compiled documents.
 
+### curse `check`
+
+`check` ensures that the `Curse.toml` manifest contains no errors. Namely, that the `defaults.target` field is a valid output format, and that all optional fields are valid (if they stray from defaults).
+
+```bash
+curse check
+```
+
+### curse `make`
+
+> Compiles all Sources in a Workspace
+
+```bash
+curse make
+```
+
 ### curse `compile`
 
-**Single File**
+> Compiles a Single Source File
+
 Compile a source file `example.TeX` to pdf:
 
 ```bash
@@ -46,17 +66,4 @@ Compile a source file to dvi:
 
 ```bash
 curse compile example.TeX -o dvi
-```
-
-**Workspace**
-To compile all sources in the `src/` directory to pdfs (add `-o dvi` for .dvi builds):
-
-```bash
-curse compile -c
-```
-
-To compile all sources in any directory `mysrc/` to pdfs:
-
-```bash
-curse compile-src -x mysrc/
 ```
