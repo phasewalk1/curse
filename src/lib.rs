@@ -1,3 +1,4 @@
+pub mod cmd;
 pub mod helpers;
 pub mod manif;
 pub use manif::Manifest as CurseManifest;

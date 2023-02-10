@@ -38,41 +38,33 @@ where
         {}
         false => return Err("Manifest is invalid".to_string().into()),
     };
-    if std::fs::read_dir(srcdir.clone())
-        .unwrap()
-        .filter(|x| filter_src(x))
-        .count()
-        == 0
+    let src_files: Vec<String> = std::fs::read_dir(srcdir)?
+        .into_iter()
+        .filter(|x| filter_src(&x))
+        .map(|x| x.unwrap().path().to_str().unwrap().to_string())
+        .collect();
+    let _ = match src_files.len()
     {
-        log::error!("No tex files found in src directory");
-        return Err("No tex files found in src directory".to_string().into());
-    }
-    for entry in std::fs::read_dir(srcdir)?
-    {
-        let entry = entry?;
-        log::debug!("Entry: {:?}", entry);
-        let path = entry.path();
-        if path.is_file()
+        0 => return Err("No source files found!".into()),
+        _ =>
         {
-            let ext = path.extension().unwrap().to_str().unwrap();
-            if ext == "tex"
+            for file in src_files
             {
-                log::debug!("Compiling: {:?}", path);
-                match manif.defaults.target.as_str()
+                let _ = match manif.defaults.target.as_str()
                 {
                     "dvi" =>
                     {
-                        compile_to_dvi(path.to_str().unwrap(), Some(&outdir))?;
+                        compile_to_dvi(&file, Some(&outdir))?;
                     }
                     _ =>
                     {
-                        log::debug!("Compiling to pdf: {:?}", path);
-                        compile_to_pdf(path.to_str().unwrap(), Some(&outdir))?;
+                        compile_to_pdf(&file, Some(&outdir))?;
                     }
-                }
+                };
             }
         }
-    }
+    };
+
     return Ok(());
 }
 

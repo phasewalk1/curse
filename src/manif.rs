@@ -20,6 +20,32 @@ impl Default for BuildMode
     fn default() -> Self { BuildMode::BatchBuild }
 }
 
+#[derive(Debug, PartialEq, Clone)]
+pub enum OutputFormat
+{
+    PDF,
+    DVI,
+}
+
+impl std::str::FromStr for OutputFormat
+{
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err>
+    {
+        match s
+        {
+            "pdf" => Ok(OutputFormat::PDF),
+            "dvi" => Ok(OutputFormat::DVI),
+            _ => Err(format!("{} is not a valid output format", s)),
+        }
+    }
+}
+
+impl Default for OutputFormat
+{
+    fn default() -> Self { OutputFormat::PDF }
+}
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct BuildCmd(String);
 
