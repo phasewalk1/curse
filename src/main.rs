@@ -25,6 +25,8 @@ struct Cli
 enum SubCommands
 {
     Compile(CompileCmd),
+    Check(CheckCmd),
+    Build(BuildCmd),
 }
 
 #[derive(Debug, PartialEq)]
@@ -66,6 +68,16 @@ struct CompileCmd
     output: Option<OutputFormat>,
 }
 
+/// build
+#[derive(FromArgs, Debug)]
+#[argh(subcommand, name = "build")]
+struct BuildCmd {}
+
+/// check
+#[derive(FromArgs, Debug)]
+#[argh(subcommand, name = "check")]
+struct CheckCmd {}
+
 fn main() -> Result<(), Box<dyn Error>>
 {
     pretty_env_logger::try_init()?;
@@ -91,6 +103,39 @@ fn main() -> Result<(), Box<dyn Error>>
                 crate::helpers::compiler::compile_to_dvi(&compile.src, Some("output"))?;
             }
         },
+        SubCommands::Check(_check) =>
+        {
+            let manif = CurseManifest::new("Curse.toml");
+            if manif.check()
+            {
+                log::info!("Manifest is valid");
+            }
+            else
+            {
+                log::error!("Manifest is invalid");
+            }
+        }
+        SubCommands::Build(_build) =>
+        {
+            let manif = CurseManifest::new("Curse.toml");
+            let build = match manif.get_build()
+            {
+                Ok(b) => b,
+                Err(_) => crate::manif::BuildMode::default(),
+            };
+            let _ = match build
+            {
+                crate::manif::BuildMode::BatchBuild =>
+                {
+                    log::debug!("Batch build");
+                    crate::helpers::compiler::batch_compile(&manif)?;
+                }
+                crate::manif::BuildMode::SingleFile =>
+                {
+                    crate::helpers::compiler::single_compile(&manif)?;
+                }
+            };
+        }
     }
 
     return Ok(());

@@ -4,6 +4,8 @@ version = "0.1.0"
 authors = ["Your Name"]
 
 [defaults]
+build = "batch"
 target = "pdf"
 artifacts-dir = "artifacts"
 target-dir = "build"
+src-dir = "LaTeX"
