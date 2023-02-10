@@ -1,4 +1,4 @@
-# curse <img src="https://github.com/phasewalk1/curse/blob/master/docs/IMG_5757.JPG" height=250 width=250 align="right" style="padding-left: 20px;">
+# curse <img src="https://github.com/phasewalk1/curse/blob/master/docs/IMG_5757.JPG" height=200 width=200 align="right" style="padding-left: 20px;">
 Command-line Unified Research, Science, and Engineering
 
 ## Overview
